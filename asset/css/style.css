@@ -1,16 +1,16 @@
-/* assets/css/style.css */
 
-/* ============ Base ============ */
 :root{
-  --bg: #0b0f19;
-  --panel: #111827;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --primary: #60a5fa;
-  --border: rgba(255,255,255,.08);
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
-  --radius: 16px;
+  --bg: #0b1220;
+  --card: rgba(255,255,255,.06);
+  --card2: rgba(255,255,255,.04);
+  --text: #e8eefc;
+  --muted: rgba(232,238,252,.72);
+  --line: rgba(255,255,255,.10);
+  --shadow: 0 18px 45px rgba(0,0,0,.45);
+  --radius: 18px;
   --max: 980px;
+  --accent: #7dd3fc;   /* cyan */
+  --accent2:#a78bfa;   /* violet */
 }
 
 *{ box-sizing: border-box; }
@@ -18,14 +18,16 @@ html, body{ height: 100%; }
 body{
   margin: 0;
   font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  background: radial-gradient(1200px 700px at 20% -10%, rgba(96,165,250,.18), transparent 60%),
-              radial-gradient(900px 500px at 90% 10%, rgba(34,197,94,.10), transparent 60%),
-              var(--bg);
   color: var(--text);
   line-height: 1.6;
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgba(125,211,252,.22), transparent 60%),
+    radial-gradient(900px 500px at 90% 0%, rgba(167,139,250,.18), transparent 55%),
+    radial-gradient(1200px 700px at 50% 110%, rgba(34,197,94,.10), transparent 55%),
+    var(--bg);
 }
 
-/* ============ Layout ============ */
+/* Container */
 .container{
   width: 100%;
   max-width: var(--max);
@@ -33,112 +35,119 @@ body{
   padding: 28px 18px 60px;
 }
 
+/* Header */
 header{
-  padding: 18px 0 10px;
-}
-
-.brand{
+  padding: 10px 0 14px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+}
+header .top{
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 14px;
+  gap: 12px;
   flex-wrap: wrap;
 }
-
-.brand h1{
-  font-size: 28px;
+h1{
   margin: 0;
+  font-size: 34px;
   letter-spacing: .2px;
 }
-
-.brand p{
+.subtitle{
   margin: 6px 0 0;
   color: var(--muted);
+  max-width: 72ch;
 }
-
+nav{
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 nav a{
-  color: var(--muted);
   text-decoration: none;
-  margin-left: 14px;
-  padding: 8px 10px;
-  border-radius: 10px;
+  color: var(--muted);
   border: 1px solid transparent;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.03);
 }
 nav a:hover{
   color: var(--text);
-  border-color: var(--border);
-  background: rgba(255,255,255,.03);
+  border-color: var(--line);
+  background: rgba(255,255,255,.06);
 }
 
-/* ============ Cards / Sections ============ */
+/* Sections */
 .section-title{
   margin: 26px 0 10px;
-  font-size: 18px;
-  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: .16em;
   text-transform: uppercase;
-  letter-spacing: .14em;
+  color: rgba(232,238,252,.62);
 }
 
+/* Grid + Cards */
 .grid{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   gap: 14px;
 }
-
 .card{
   grid-column: span 12;
-  background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
   padding: 18px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--card), var(--card2));
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(8px);
 }
-
-@media (min-width: 700px){
+@media (min-width: 720px){
   .card.span-6{ grid-column: span 6; }
   .card.span-4{ grid-column: span 4; }
 }
-
 .card h2, .card h3{
   margin: 0 0 6px;
+  letter-spacing: .2px;
 }
 .card p{
   margin: 8px 0 0;
   color: var(--muted);
 }
 
-/* ============ Buttons / Links ============ */
-a{
-  color: var(--primary);
-}
-a:hover{
-  text-decoration: underline;
-}
+/* Project links */
+a{ color: var(--accent); }
+a:hover{ text-decoration: underline; }
 
+/* Buttons */
 .actions{
   margin-top: 12px;
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
 }
-
 .btn{
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 9px 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(255,255,255,.03);
+  padding: 10px 12px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
   color: var(--text);
   text-decoration: none;
+  background: rgba(255,255,255,.04);
 }
 .btn:hover{
-  background: rgba(255,255,255,.06);
-  border-color: rgba(96,165,250,.35);
+  background: rgba(255,255,255,.07);
+  border-color: rgba(125,211,252,.35);
   text-decoration: none;
 }
+.btn.primary{
+  border-color: rgba(125,211,252,.35);
+  background: linear-gradient(135deg, rgba(125,211,252,.18), rgba(167,139,250,.12));
+}
 
+/* Badges */
 .badges{
   margin-top: 10px;
   display: flex;
@@ -149,46 +158,49 @@ a:hover{
   font-size: 12px;
   padding: 4px 10px;
   border-radius: 999px;
-  border: 1px solid var(--border);
-  color: var(--muted);
-  background: rgba(255,255,255,.02);
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.03);
+  color: rgba(232,238,252,.76);
 }
 
-/* ============ Notebook HTML (nbconvert) tweaks ============ */
-/* Si tu convertis .ipynb -> .html, ça aide à rendre la page plus propre */
+/* Notebook/nbconvert polish */
 pre, code{
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 }
 pre{
   overflow: auto;
   padding: 12px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: rgba(0,0,0,.25);
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(0,0,0,.28);
 }
 table{
   width: 100%;
   border-collapse: collapse;
+  border-radius: 14px;
   overflow: hidden;
-  border-radius: 12px;
-  border: 1px solid var(--border);
+  border: 1px solid var(--line);
 }
 th, td{
   padding: 10px 12px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--line);
 }
 th{
   text-align: left;
-  color: var(--text);
-  background: rgba(255,255,255,.03);
+  background: rgba(255,255,255,.04);
 }
-tr:hover td{
-  background: rgba(255,255,255,.02);
-}
+tr:hover td{ background: rgba(255,255,255,.03); }
 
-/* ============ Footer ============ */
+/* Footer */
 footer{
   margin-top: 30px;
-  color: var(--muted);
+  color: rgba(232,238,252,.62);
   font-size: 14px;
+}
+
+/* Small helpers */
+.hr{
+  height: 1px;
+  background: var(--line);
+  margin: 14px 0;
 }
