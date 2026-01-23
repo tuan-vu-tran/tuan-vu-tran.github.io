@@ -1,1 +1,1 @@
-console.log("Portfolio en ligne 🚀");
+console.log("Portfolio en ligne");
